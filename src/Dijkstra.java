@@ -1,11 +1,14 @@
 public class Dijkstra< T > {
 
-    int[] values;
-    int[] comeFrom;
-    boolean[] marked;
-    DirectedWeightedGraph myGraph;
+    private int[] values;
+    private int[] comeFrom;
+    private boolean[] marked;
+    private DirectedWeightedGraph myGraph;
+    private Main texture;
 
-    Dijkstra(T myGraph, int vertex) {
+    Dijkstra(T myGraph, Main texture) {
+
+        this.texture = texture;
 
         int numberOfVertex = ((DirectedWeightedGraph)myGraph).getNumberOfV();
 
@@ -13,15 +16,9 @@ public class Dijkstra< T > {
         comeFrom = new int[numberOfVertex];
         marked = new boolean[numberOfVertex];
 
-        comeFrom[vertex] = -1;
-
         for (int i = 0; i < numberOfVertex; i++) {
 
-            if (vertex != i) {
-
-                values[i] = Integer.MAX_VALUE;
-
-            }
+            values[i] = Integer.MAX_VALUE;
 
         }
 
@@ -30,31 +27,23 @@ public class Dijkstra< T > {
     }
 
 
-    public void startDijkstra(int v) {
+    public void start(int v) {
 
-        for (int adj : myGraph.getAdj(v)) {
+        values[v] = 0;
 
-            if (!marked[adj] || values[v] + myGraph.getFromMatrix(v, adj) < values[adj]) {
-
-                values[adj] = values[v] + myGraph.getFromMatrix(v, adj);
-                comeFrom[adj] = v;
-
-            }
-
-        }
-
-    }
+        // dijkstra code
 
 
-
-
-    public static void main(String args[]){
+//        for (int adj : myGraph.getAdj(v)) {
 //
-//        UndirectedWeightedGraph hamid = new UndirectedWeightedGraph(2);
-//        Dijkstra amin = new Dijkstra(hamid);
-
-
+//            if (!marked[adj] || values[v] + myGraph.getFromMatrix(v, adj) < values[adj]) {
+//
+//                values[adj] = values[v] + myGraph.getFromMatrix(v, adj);
+//                comeFrom[adj] = v;
+//
+//            }
+//
+//        }
 
     }
-
 }
