@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/Dijkstra-District-Math.iml" filepath="$PROJECT_DIR$/Dijkstra-District-Math.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/Dijkstra - District Math.iml" filepath="$PROJECT_DIR$/Dijkstra - District Math.iml" />
->>>>>>> e5b7c490533b9a99bb50a7b478ac9f8f3d65f0c5
     </modules>
   </component>
 </project>
