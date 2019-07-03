@@ -1,13 +1,9 @@
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.*;
 
 public class Main extends Application {
 
@@ -35,7 +31,7 @@ public class Main extends Application {
         myStage.show();
     }
 
-    public void createMyGraph () {
+    public void createMyGraph () throws Exception {
 
         int numberOfVertex;
         int numberOfEdge;
@@ -43,30 +39,21 @@ public class Main extends Application {
         numberOfVertex = input.nextInt();
         numberOfEdge = input.nextInt();
 
-        myGraph = new DirectedWeightedGraph(numberOfVertex, this);
+        myGraph = new DirectedWeightedGraph(numberOfVertex);
+
+        root.getChildren().addAll(myGraph.getNodesFace());
 
         for (int i = 0; i < numberOfEdge; i++){
 
-            int a, b, c;
-            a = input.nextInt();
-            b = input.nextInt();
-            c = input.nextInt();
-            myGraph.addEdge(a, b, c);
-
+            int st, en, wei;
+            st = input.nextInt();
+            en = input.nextInt();
+            wei = input.nextInt();
+            myGraph.addEdge(st, en, wei);
         }
-    }
 
-    public void setEdges (int[][] matrix) {
+        root.getChildren().addAll(myGraph.getEdgesFace());
 
-    }
-
-    public void setNodes (int v) {
-        Circle circle1 = new Circle();
-        circle1.setCenterX(20);
-        circle1.setCenterY(20);
-        circle1.setRadius(20);
-        root.getChildren().addAll(circle1);
-        myStage.setScene(myScene);
     }
 
     @Override
@@ -76,11 +63,7 @@ public class Main extends Application {
 
         createMyGraph();
 
-        setNodes(myGraph.getNumberOfV());
-
-        setEdges(myGraph.getMatrix());
-
-        Dijkstra <DirectedWeightedGraph> myDij = new Dijkstra<DirectedWeightedGraph>(myGraph, this);
+        Dijkstra<DirectedWeightedGraph> myDij = new Dijkstra<DirectedWeightedGraph>(myGraph, this);
         myDij.start(0);
 
     }
@@ -90,3 +73,27 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

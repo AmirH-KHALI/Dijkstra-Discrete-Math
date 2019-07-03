@@ -1,45 +1,80 @@
-import org.w3c.dom.Text;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 
 public class DirectedWeightedGraph {
 
     protected int numberOfV;
-    protected int[][] matrix;
-    protected Main texture;
 
+    protected ArrayList<Nodes> nodesList = new ArrayList<Nodes>();
+    protected ArrayList<Edges>[] adj;
 
-    DirectedWeightedGraph(int v, Main texture){
+    DirectedWeightedGraph (int v) throws Exception {
 
         numberOfV = v;
-        matrix = new int[numberOfV][numberOfV];
 
-        this.texture = texture;
+        setNodes();
 
-    }
+        adj = new ArrayList[numberOfV];
 
-
-    public void addEdge(int a, int b, int weight) {
-
-        matrix[a][b] = weight;
-
-    }
-
-    public ArrayList<Integer> getAdj(int v) {
-
-        ArrayList<Integer> adj = new ArrayList<>();
-
-        for (int i = 0; i < numberOfV; i++) {
-
-            if (matrix[v][i] >= 1) {
-
-                adj.add(i);
-
-            }
-
+        for (int i = 0; i < numberOfV; ++i) {
+            adj[i] = new ArrayList<Edges>();
         }
 
-        return adj;
+    }
+
+    public ArrayList<Circle> getNodesFace () {
+
+        ArrayList<Circle> ans = new ArrayList<Circle>();
+
+        for (Nodes x : nodesList) {
+            ans.add(x.getFace());
+        }
+        return ans;
+    }
+
+    public ArrayList<Line> getEdgesFace () {
+
+        ArrayList<Line> edgesList = new ArrayList<Line>();
+
+        for (int i = 0; i < numberOfV; ++i) {
+            for (int j = 0; j < adj[i].size(); ++j)
+                edgesList.add(adj[i].get(j).getFace());
+        }
+
+        return edgesList;
+    }
+
+    public void setNodes() throws Exception {
+
+        int rad = 200;
+
+        for (int i = 0; i < numberOfV; ++i) {
+
+            final double angle = Math.toRadians(((double) i / numberOfV) * 360d);
+
+            double x = (Math.cos(angle) * rad) + 500;
+            double y = (Math.sin(angle) * rad) + 350;
+
+            Nodes node = new Nodes(x, y);
+
+            nodesList.add(node);
+        }
+    }
+
+
+    public void addEdge (int a, int b, int weight) {
+
+        Edges edge = new Edges(nodesList.get(a), nodesList.get(b), weight);
+
+        adj[a].add(edge);
+
+    }
+
+    public ArrayList<Edges> getAdj(int v) {
+
+        return adj[v];
 
     }
 
@@ -48,17 +83,4 @@ public class DirectedWeightedGraph {
         return numberOfV;
 
     }
-
-    public int[][] getMatrix() {
-
-        return matrix;
-
-    }
-
-    public int getFromMatrix(int a, int b) {
-
-        return matrix[a][b];
-
-    }
-
 }
