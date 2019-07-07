@@ -1,4 +1,5 @@
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 
 public class Edges extends Line {
 
@@ -6,11 +7,15 @@ public class Edges extends Line {
     private Nodes start;
     private Nodes end;
     private boolean mark = false;
-    private Line myFace;
+
+    private Text valueFace;
+    private Arrow myFace;
 
     public Edges (Nodes start, Nodes end, int value) {
 
-        myFace = new Line();
+        myFace = new Arrow();
+
+        valueFace = new Text(Integer.toString(value));
 
         this.start = start;
         this.end = end;
@@ -20,10 +25,17 @@ public class Edges extends Line {
         myFace.setStartY(start.getFace().getCenterY());
         myFace.setEndX(end.getFace().getCenterX());
         myFace.setEndY(end.getFace().getCenterY());
+
+        valueFace.setX( ( myFace.getStartX() + myFace.getEndX() ) / 2);
+        valueFace.setY( ( myFace.getStartY() + myFace.getEndY() ) / 2);
     }
 
-    public Line getFace () {
+    public Arrow getFace () {
         return myFace;
+    }
+
+    public Text getValFace () {
+        return valueFace;
     }
 
 }

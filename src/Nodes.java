@@ -12,7 +12,7 @@ public class Nodes {
 
         myFace.setCenterX(x);
         myFace.setCenterY(y);
-        myFace.setRadius(10);
+        myFace.setRadius(7);
 
     }
 

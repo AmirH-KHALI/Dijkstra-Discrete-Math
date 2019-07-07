@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Scanner;
@@ -16,6 +17,27 @@ public class Main extends Application {
     private DirectedWeightedGraph myGraph;
 
     private Group root;
+
+    public <T extends Group> void printShape(double itemNumber, T shape) {
+
+        final long startNanoTime = System.nanoTime();
+
+        new AnimationTimer() {
+            public void handle(long currentNanoTime) {
+
+                double delta = (currentNanoTime - startNanoTime) / 1000000000.0;
+
+                if (delta > itemNumber/3) {
+
+                    root.getChildren().add(shape);
+                    stop();
+
+                }
+
+            }
+        }.start();
+
+    }
 
     public <T extends Shape> void printShape(double itemNumber, T shape) {
 
@@ -68,9 +90,16 @@ public class Main extends Application {
 
         }
 
-        for (Line line : myGraph.getEdgesFace()) {
+        for (Arrow arrow : myGraph.getEdgesFace()) {
 
-            printShape(itemNumber, line);
+            printShape(itemNumber, arrow);
+            itemNumber++;
+
+        }
+
+        for (Text val : myGraph.getEdgesValFace()) {
+
+            printShape(itemNumber, val);
             itemNumber++;
 
         }

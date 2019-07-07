@@ -1,5 +1,6 @@
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
@@ -34,9 +35,9 @@ public class DirectedWeightedGraph {
         return ans;
     }
 
-    public ArrayList<Line> getEdgesFace () {
+    public ArrayList<Arrow> getEdgesFace () {
 
-        ArrayList<Line> edgesList = new ArrayList<Line>();
+        ArrayList<Arrow> edgesList = new ArrayList<Arrow>();
 
         for (int i = 0; i < numberOfV; ++i) {
             for (int j = 0; j < adj[i].size(); ++j)
@@ -44,6 +45,18 @@ public class DirectedWeightedGraph {
         }
 
         return edgesList;
+    }
+
+    public ArrayList<Text> getEdgesValFace () {
+
+        ArrayList<Text> edgesValList = new ArrayList<Text>();
+
+        for (int i = 0; i < numberOfV; ++i) {
+            for (int j = 0; j < adj[i].size(); ++j)
+                edgesValList.add(adj[i].get(j).getValFace());
+        }
+
+        return edgesValList;
     }
 
     public void setNodes() throws Exception {
