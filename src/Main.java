@@ -3,11 +3,11 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main extends Application {
@@ -85,22 +85,22 @@ public class Main extends Application {
         itemNumber = 1;
         for (Circle circle : myGraph.getNodesFace()) {
 
-            printShape(itemNumber, circle);
-            itemNumber++;
+            root.getChildren().add(circle);
+            //itemNumber++;
 
         }
 
         for (Arrow arrow : myGraph.getEdgesFace()) {
 
-            printShape(itemNumber, arrow);
-            itemNumber++;
+            root.getChildren().add(arrow);
+            //itemNumber++;
 
         }
 
         for (Text val : myGraph.getEdgesValFace()) {
 
-            printShape(itemNumber, val);
-            itemNumber++;
+            root.getChildren().add(val);
+            //itemNumber++;
 
         }
 
@@ -120,8 +120,8 @@ public class Main extends Application {
 
         createMyGraph();
 
-//        Dijkstra<DirectedWeightedGraph> myDij = new Dijkstra<DirectedWeightedGraph>(myGraph, this);
-//        myDij.start(0);
+        Dijkstra<DirectedWeightedGraph> myDij = new Dijkstra<DirectedWeightedGraph>(myGraph, this);
+        ArrayList<Edges> edgeWalk = myDij.start(0);
 
         primaryStage.show();
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Dijkstra< T > {
 
     private int[] values;
@@ -27,7 +29,7 @@ public class Dijkstra< T > {
     }
 
 
-    public void start(int v) {
+    public ArrayList<Edges> start(int v) {
 
         values[v] = 0;
 
@@ -44,6 +46,6 @@ public class Dijkstra< T > {
 //            }
 //
 //        }
-
+        return new ArrayList<Edges>();
     }
 }
