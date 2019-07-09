@@ -10,6 +10,7 @@ public class Dijkstra {
     private int mark[];
     private int par[];
     private ArrayList<Integer> ans;
+    private ArrayList<Integer> distArr;
 
     private DirectedWeightedGraph myGraph;
 
@@ -26,6 +27,7 @@ public class Dijkstra {
         par = new int[n];
 
         ans = new ArrayList<Integer>();
+        distArr = new ArrayList<Integer>();
 
         this.myGraph = myGraph;
 
@@ -68,11 +70,17 @@ public class Dijkstra {
 //        }
 
         for (int i : ans) {
-            if (i != s)
+            if (i != s) {
                 ansE.add(w[par[i]][i]);
+                distArr.add(dist[i]);
+            }
         }
 
         return ansE;
+    }
+
+    public ArrayList<Integer> getDist () {
+        return distArr;
     }
 
 }

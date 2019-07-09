@@ -15,13 +15,14 @@ public class Nodes {
 
         this.num = new Text(Integer.toString(num));
         this.num.setX(x - 5);
-        this.num.setY(y - 15);
-        this.num.setStroke(Color.RED);
-        this.num.setFill(Color.RED);
+        this.num.setY(y + 5);
+        this.num.setStroke(Color.BLACK);
+        this.num.setFill(Color.BLACK);
+        this.num.toFront();
 
         myFace = new Circle();
 
-        myFace.setFill(Color.RED);
+        myFace.setFill(Color.WHITE);
 
         myFace.setCenterX(x);
         myFace.setCenterY(y);

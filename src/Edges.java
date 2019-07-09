@@ -1,3 +1,4 @@
+import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -13,7 +14,6 @@ public class Edges extends Line {
     private boolean mark = false;
 
     private Text valueFace;
-    private FlowPane flow;
 
     private Arrow myFace;
 
@@ -37,7 +37,6 @@ public class Edges extends Line {
         valueFace.setX( ( myFace.getStartX() + myFace.getEndX() ) / 2);
         valueFace.setY( ( myFace.getStartY() + myFace.getEndY() ) / 2);
 
-        flow = new FlowPane(valueFace);
     }
 
     public Arrow getFace () {
@@ -49,5 +48,9 @@ public class Edges extends Line {
     }
 
     public int getVal () { return weight; }
+
+    public Nodes getFirstNode () { return start; }
+
+    public Nodes getSecondNode () { return end; }
 
 }

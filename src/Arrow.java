@@ -139,10 +139,28 @@ public class Arrow extends Group {
         return mainLine.endYProperty();
     }
 
-    public final void setFill (Paint color) {
-        mainLine.setFill(color);
-        //arrowLine1.setFill(color);
-        //arrowLine2.setFill(color);
+    public final void setFill (Color color) {
+        mainLine.setStrokeWidth(3);
+        mainLine.setStroke(new LinearGradient(0d, -5d, 0d, 5d, false,
+                CycleMethod.NO_CYCLE, new Stop(0,Color.BLACK),
+                new Stop(0.199,Color.BLACK),
+                new Stop(0.2,Color.RED),
+                new Stop(0.799,Color.RED),
+                new Stop(0.8, color)));
+        arrowLine1.setStrokeWidth(3);
+        arrowLine1.setStroke(new LinearGradient(0d, -5d, 0d, 5d, false,
+                CycleMethod.NO_CYCLE, new Stop(0,Color.BLACK),
+                new Stop(0.199,Color.BLACK),
+                new Stop(0.2,Color.RED),
+                new Stop(0.799,Color.RED),
+                new Stop(0.8, color)));
+        arrowLine2.setStrokeWidth(3);
+        arrowLine2.setStroke(new LinearGradient(0d, -5d, 0d, 5d, false,
+                CycleMethod.NO_CYCLE, new Stop(0,Color.BLACK),
+                new Stop(0.199,Color.BLACK),
+                new Stop(0.2,Color.RED),
+                new Stop(0.799,Color.RED),
+                new Stop(0.8, color)));
     }
 
 }
