@@ -13,6 +13,8 @@ public class Edges extends Line {
     private boolean mark = false;
 
     private Text valueFace;
+    private FlowPane flow;
+
     private Arrow myFace;
 
     public Edges (Nodes start, Nodes end, int value) {
@@ -21,7 +23,7 @@ public class Edges extends Line {
 
         valueFace = new Text(Integer.toString(value));
         valueFace.setStroke(Color.BLUE);
-        valueFace.setFill(Color.BLACK);
+        valueFace.setFill(Color.BLUE);
 
         this.start = start;
         this.end = end;
@@ -34,6 +36,8 @@ public class Edges extends Line {
 
         valueFace.setX( ( myFace.getStartX() + myFace.getEndX() ) / 2);
         valueFace.setY( ( myFace.getStartY() + myFace.getEndY() ) / 2);
+
+        flow = new FlowPane(valueFace);
     }
 
     public Arrow getFace () {

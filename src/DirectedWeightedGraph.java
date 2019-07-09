@@ -1,6 +1,7 @@
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 
 public class DirectedWeightedGraph {
@@ -37,7 +38,7 @@ public class DirectedWeightedGraph {
             double x = (Math.cos(angle) * rad) + 500;
             double y = (Math.sin(angle) * rad) + 350;
 
-            Nodes node = new Nodes(x, y);
+            Nodes node = new Nodes(x, y, i);
 
             nodesList.add(node);
         }
@@ -64,6 +65,15 @@ public class DirectedWeightedGraph {
 
         for (Nodes x : nodesList) {
             ans.add(x.getFace());
+        }
+        return ans;
+    }
+
+    public ArrayList<Text> getNodesNumFace () {
+        ArrayList<Text> ans = new ArrayList<Text>();
+
+        for (Nodes x : nodesList) {
+            ans.add(x.getNumFace());
         }
         return ans;
     }

@@ -2,6 +2,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -18,7 +19,7 @@ public class Main extends Application {
 
     private DirectedWeightedGraph myGraph;
 
-    public static Group root;
+    public static Pane root;
 
     private int itemNumber = 1;
 
@@ -93,6 +94,10 @@ public class Main extends Application {
 
         }
 
+        for (Text num : myGraph.getNodesNumFace()) {
+            root.getChildren().add(num);
+        }
+
 //        for (Arrow arrow : myGraph.getEdgesFace()) {
 //
 //            //arrow.setFill(Color.RED);
@@ -101,12 +106,12 @@ public class Main extends Application {
 //
 //        }
 
-        for (Text val : myGraph.getEdgesValFace()) {
-
-            //root.getChildren().add(val);
-            //itemNumber++;
-
-        }
+//        for (Text val : myGraph.getEdgesValFace()) {
+//
+//            //root.getChildren().add(val);
+//            //itemNumber++;
+//
+//        }
 
 
     }
@@ -136,7 +141,8 @@ public class Main extends Application {
 
         primaryStage.setTitle("Discrete Math final project - Discrete");
 
-        root = new Group();
+        root = new Pane();
+        root.setStyle("-fx-background-color:RGB(255,255,0)");
 
         Scene scene = new Scene(root,1000, 700);
 

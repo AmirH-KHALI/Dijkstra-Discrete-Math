@@ -1,5 +1,5 @@
 import javafx.scene.Group;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.*;
 import javafx.scene.shape.Line;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;
@@ -59,6 +59,28 @@ public class Arrow extends Group {
                 arrow2.setStartX(ex + dx + oy);
                 arrow2.setStartY(ey + dy - ox);
             }
+
+            mainLine.setStrokeWidth(3);
+            mainLine.setStroke(new LinearGradient(0d, -5d, 0d, 5d, false,
+                    CycleMethod.NO_CYCLE, new Stop(0,Color.BLACK),
+                    new Stop(0.199,Color.BLACK),
+                    new Stop(0.2,Color.RED),
+                    new Stop(0.799,Color.RED),
+                    new Stop(0.8, Color.BLACK)));
+            arrowLine1.setStrokeWidth(3);
+            arrowLine1.setStroke(new LinearGradient(0d, -5d, 0d, 5d, false,
+                    CycleMethod.NO_CYCLE, new Stop(0,Color.BLACK),
+                    new Stop(0.199,Color.BLACK),
+                    new Stop(0.2,Color.RED),
+                    new Stop(0.799,Color.RED),
+                    new Stop(0.8, Color.BLACK)));
+            arrowLine2.setStrokeWidth(3);
+            arrowLine2.setStroke(new LinearGradient(0d, -5d, 0d, 5d, false,
+                    CycleMethod.NO_CYCLE, new Stop(0,Color.BLACK),
+                    new Stop(0.199,Color.BLACK),
+                    new Stop(0.2,Color.RED),
+                    new Stop(0.799,Color.RED),
+                    new Stop(0.8, Color.BLACK)));
         };
 
         // add updater to properties
