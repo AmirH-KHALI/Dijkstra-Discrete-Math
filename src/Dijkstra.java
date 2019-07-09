@@ -1,51 +1,78 @@
+import com.sun.javafx.geom.Edge;
+
 import java.util.ArrayList;
 
-public class Dijkstra< T > {
+public class Dijkstra {
 
-    private int[] values;
-    private int[] comeFrom;
-    private boolean[] marked;
+    private int n;
+    private Edges w[][];
+    private int dist[];
+    private int mark[];
+    private int par[];
+    private ArrayList<Integer> ans;
+
     private DirectedWeightedGraph myGraph;
-    private Main texture;
 
-    Dijkstra(T myGraph, Main texture) {
+    Dijkstra (DirectedWeightedGraph myGraph) {
 
-        this.texture = texture;
+        n = myGraph.getNumberOfV();
 
-        int numberOfVertex = ((DirectedWeightedGraph)myGraph).getNumberOfV();
+        System.out.println(n);
 
-        values = new int[numberOfVertex];
-        comeFrom = new int[numberOfVertex];
-        marked = new boolean[numberOfVertex];
+        w = myGraph.getWeight();
 
-        for (int i = 0; i < numberOfVertex; i++) {
+        dist = new int[n];
+        mark = new int[n];
+        par = new int[n];
 
-            values[i] = Integer.MAX_VALUE;
+        ans = new ArrayList<Integer>();
 
+        this.myGraph = myGraph;
+
+    }
+
+    public ArrayList<Edges> doDijkstra (int s) {
+        for (int i = 0; i < n; ++i) {
+                dist[i] = Integer.MAX_VALUE;
+                par[i] = i;
+        }
+        dist[s] = 0;
+        for (int rep = 0; rep < n; ++rep) {
+            int u = -1;
+            int du = Integer.MAX_VALUE;
+            for (int i = 0; i < n; ++i) {
+                if (mark[i] == 0 && dist[i] <= du) {
+                    u = i;
+                    du = dist[i];
+                }
+            }
+            mark[u] = 1;
+            ans.add(u);
+            for (int v = 0; v < n; ++v)
+                if(w[u][v] != null && w[u][v].getVal() > 0)
+                    if (dist[v] > dist[u] + w[u][v].getVal()) {
+                        dist[v] = dist[u] + w[u][v].getVal();
+                        par[v] = u;
+                    }
         }
 
-        this.myGraph = (DirectedWeightedGraph) myGraph;
-
+        return writeOutput(s);
     }
 
+    public ArrayList<Edges> writeOutput (int s) {
 
-    public ArrayList<Edges> start(int v) {
+        ArrayList<Edges> ansE = new ArrayList<Edges>();
 
-        values[v] = 0;
-
-        // dijkstra code
-
-
-//        for (int adj : myGraph.getAdj(v)) {
-//
-//            if (!marked[adj] || values[v] + myGraph.getFromMatrix(v, adj) < values[adj]) {
-//
-//                values[adj] = values[v] + myGraph.getFromMatrix(v, adj);
-//                comeFrom[adj] = v;
-//
-//            }
-//
+//        for (int i : ans) {
+//            System.out.println(i);
 //        }
-        return new ArrayList<Edges>();
+
+        for (int i : ans) {
+            if (i != s)
+                ansE.add(w[par[i]][i]);
+        }
+
+        return ansE;
     }
+
 }

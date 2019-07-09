@@ -8,54 +8,22 @@ public class DirectedWeightedGraph {
     protected int numberOfV;
 
     protected ArrayList<Nodes> nodesList = new ArrayList<Nodes>();
-    protected ArrayList<Edges>[] adj;
+
+    protected Edges[][] weight;
 
     DirectedWeightedGraph (int v) throws Exception {
 
         numberOfV = v;
 
+        weight = new Edges[numberOfV][numberOfV];
+
+        for (int i = 0; i < numberOfV; ++i) {
+            for (int j = 0; j < numberOfV; ++j) {
+                weight[i][j] = null;
+            }
+        }
+
         setNodes();
-
-        adj = new ArrayList[numberOfV];
-
-        for (int i = 0; i < numberOfV; ++i) {
-            adj[i] = new ArrayList<Edges>();
-        }
-
-    }
-
-    public ArrayList<Circle> getNodesFace () {
-
-        ArrayList<Circle> ans = new ArrayList<Circle>();
-
-        for (Nodes x : nodesList) {
-            ans.add(x.getFace());
-        }
-        return ans;
-    }
-
-    public ArrayList<Arrow> getEdgesFace () {
-
-        ArrayList<Arrow> edgesList = new ArrayList<Arrow>();
-
-        for (int i = 0; i < numberOfV; ++i) {
-            for (int j = 0; j < adj[i].size(); ++j)
-                edgesList.add(adj[i].get(j).getFace());
-        }
-
-        return edgesList;
-    }
-
-    public ArrayList<Text> getEdgesValFace () {
-
-        ArrayList<Text> edgesValList = new ArrayList<Text>();
-
-        for (int i = 0; i < numberOfV; ++i) {
-            for (int j = 0; j < adj[i].size(); ++j)
-                edgesValList.add(adj[i].get(j).getValFace());
-        }
-
-        return edgesValList;
     }
 
     public void setNodes() throws Exception {
@@ -78,21 +46,53 @@ public class DirectedWeightedGraph {
 
     public void addEdge (int a, int b, int weight) {
 
-        Edges edge = new Edges(nodesList.get(a), nodesList.get(b), weight);
-
-        adj[a].add(edge);
-
-    }
-
-    public ArrayList<Edges> getAdj(int v) {
-
-        return adj[v];
+        this.weight[a][b] = new Edges(nodesList.get(a), nodesList.get(b), weight);
 
     }
 
     public int getNumberOfV() {
-
         return numberOfV;
+    }
 
+    public Edges[][] getWeight () {
+        return weight;
+    }
+
+    public ArrayList<Circle> getNodesFace () {
+
+        ArrayList<Circle> ans = new ArrayList<Circle>();
+
+        for (Nodes x : nodesList) {
+            ans.add(x.getFace());
+        }
+        return ans;
+    }
+
+    public ArrayList<Arrow> getEdgesFace () {
+
+        ArrayList<Arrow> edgesList = new ArrayList<Arrow>();
+
+        for (int i = 0; i < numberOfV; ++i) {
+            for (int j = 0; j < numberOfV; ++j) {
+                if (weight[i][j] != null)
+                    edgesList.add(weight[i][j].getFace());
+            }
+        }
+
+        return edgesList;
+    }
+
+    public ArrayList<Text> getEdgesValFace () {
+
+        ArrayList<Text> edgesList = new ArrayList<Text>();
+
+        for (int i = 0; i < numberOfV; ++i) {
+            for (int j = 0; j < numberOfV; ++j) {
+                if (weight[i][j] != null)
+                    edgesList.add(weight[i][j].getValFace());
+            }
+        }
+
+        return edgesList;
     }
 }

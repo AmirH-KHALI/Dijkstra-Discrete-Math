@@ -1,3 +1,4 @@
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Nodes {
@@ -9,6 +10,8 @@ public class Nodes {
     public Nodes (double x, double y) {
 
         myFace = new Circle();
+
+        myFace.setFill(Color.RED);
 
         myFace.setCenterX(x);
         myFace.setCenterY(y);

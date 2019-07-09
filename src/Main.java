@@ -2,7 +2,9 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -16,7 +18,9 @@ public class Main extends Application {
 
     private DirectedWeightedGraph myGraph;
 
-    private Group root;
+    public static Group root;
+
+    private int itemNumber = 1;
 
     public <T extends Group> void printShape(double itemNumber, T shape) {
 
@@ -64,7 +68,6 @@ public class Main extends Application {
 
         int numberOfVertex;
         int numberOfEdge;
-        int itemNumber;
 
         numberOfVertex = input.nextInt();
         numberOfEdge = input.nextInt();
@@ -82,7 +85,7 @@ public class Main extends Application {
 
         }
 
-        itemNumber = 1;
+        //itemNumber = 1;
         for (Circle circle : myGraph.getNodesFace()) {
 
             root.getChildren().add(circle);
@@ -90,20 +93,41 @@ public class Main extends Application {
 
         }
 
-        for (Arrow arrow : myGraph.getEdgesFace()) {
-
-            root.getChildren().add(arrow);
-            //itemNumber++;
-
-        }
+//        for (Arrow arrow : myGraph.getEdgesFace()) {
+//
+//            //arrow.setFill(Color.RED);
+//            root.getChildren().add(arrow);
+//            //itemNumber++;
+//
+//        }
 
         for (Text val : myGraph.getEdgesValFace()) {
 
-            root.getChildren().add(val);
+            //root.getChildren().add(val);
             //itemNumber++;
 
         }
 
+
+    }
+
+    public void showDij(ArrayList<Edges> edgeWalk) {
+
+        for (Edges edge : edgeWalk) {
+
+            Arrow arrow = edge.getFace();
+
+            Text val = edge.getValFace();
+
+            //root.getChildren().add(arrow);
+
+            arrow.setFill(Color.RED);
+            printShape(itemNumber, arrow);
+            itemNumber++;
+            printShape(itemNumber, val);
+            itemNumber++;
+
+        }
 
     }
 
@@ -120,8 +144,10 @@ public class Main extends Application {
 
         createMyGraph();
 
-        Dijkstra<DirectedWeightedGraph> myDij = new Dijkstra<DirectedWeightedGraph>(myGraph, this);
-        ArrayList<Edges> edgeWalk = myDij.start(0);
+        Dijkstra myDij = new Dijkstra(myGraph);
+        ArrayList<Edges> edgeWalk = myDij.doDijkstra(0);
+
+        showDij(edgeWalk);
 
         primaryStage.show();
 

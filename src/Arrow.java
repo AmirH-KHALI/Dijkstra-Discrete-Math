@@ -1,4 +1,5 @@
 import javafx.scene.Group;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;
@@ -6,7 +7,10 @@ import javafx.beans.property.DoubleProperty;
 
 public class Arrow extends Group {
 
-    private final Line line;
+    private final Line mainLine;
+    private final Line arrowLine1;
+    private final Line arrowLine2;
+
 
     public Arrow() {
         this(new Line(), new Line(), new Line());
@@ -17,7 +21,10 @@ public class Arrow extends Group {
 
     private Arrow(Line line, Line arrow1, Line arrow2) {
         super(line, arrow1, arrow2);
-        this.line = line;
+        this.mainLine = line;
+        this.arrowLine1 = arrow1;
+        this.arrowLine2 = arrow2;
+
         InvalidationListener updater = o -> {
             double ex = getEndX();
             double ey = getEndY();
@@ -65,51 +72,55 @@ public class Arrow extends Group {
     // start/end properties
 
     public final void setStartX(double value) {
-        line.setStartX(value);
+        mainLine.setStartX(value);
     }
 
     public final double getStartX() {
-        return line.getStartX();
+        return mainLine.getStartX();
     }
 
-    public final DoubleProperty startXProperty() {
-        return line.startXProperty();
-    }
+    public final DoubleProperty startXProperty() { return mainLine.startXProperty(); }
 
     public final void setStartY(double value) {
-        line.setStartY(value);
+        mainLine.setStartY(value);
     }
 
     public final double getStartY() {
-        return line.getStartY();
+        return mainLine.getStartY();
     }
 
     public final DoubleProperty startYProperty() {
-        return line.startYProperty();
+        return mainLine.startYProperty();
     }
 
     public final void setEndX(double value) {
-        line.setEndX(value);
+        mainLine.setEndX(value);
     }
 
     public final double getEndX() {
-        return line.getEndX();
+        return mainLine.getEndX();
     }
 
     public final DoubleProperty endXProperty() {
-        return line.endXProperty();
+        return mainLine.endXProperty();
     }
 
     public final void setEndY(double value) {
-        line.setEndY(value);
+        mainLine.setEndY(value);
     }
 
     public final double getEndY() {
-        return line.getEndY();
+        return mainLine.getEndY();
     }
 
     public final DoubleProperty endYProperty() {
-        return line.endYProperty();
+        return mainLine.endYProperty();
+    }
+
+    public final void setFill (Paint color) {
+        mainLine.setFill(color);
+        //arrowLine1.setFill(color);
+        //arrowLine2.setFill(color);
     }
 
 }
