@@ -35,8 +35,8 @@ public class DirectedWeightedGraph {
 
             final double angle = Math.toRadians(((double) i / numberOfV) * 360d);
 
-            double x = (Math.cos(angle) * rad) + 500;
-            double y = (Math.sin(angle) * rad) + 350;
+            double x = (Math.cos(angle) * rad) + 502 + 100*Math.cos(angle);
+            double y = (Math.sin(angle) * rad) + 352 + 100*Math.sin(angle);
 
             Nodes node = new Nodes(x, y, i);
 

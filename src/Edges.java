@@ -1,10 +1,6 @@
-import javafx.scene.Node;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-
-import java.awt.*;
 
 public class Edges extends Line {
 
@@ -22,8 +18,10 @@ public class Edges extends Line {
         myFace = new Arrow();
 
         valueFace = new Text(Integer.toString(value));
-        valueFace.setStroke(Color.BLUE);
-        valueFace.setFill(Color.BLUE);
+        valueFace.setStroke(Color.WHITE);
+        valueFace.setFill(Color.WHITE);
+
+        // 	73, 157, 238
 
         this.start = start;
         this.end = end;

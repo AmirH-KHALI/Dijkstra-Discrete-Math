@@ -54,10 +54,10 @@ public class Arrow extends Group {
                 double ox = (sx - ex) * factorO;
                 double oy = (sy - ey) * factorO;
 
-                arrow1.setStartX(ex + dx - oy);
-                arrow1.setStartY(ey + dy + ox);
-                arrow2.setStartX(ex + dx + oy);
-                arrow2.setStartY(ey + dy - ox);
+                arrow1.setStartX(ex + dx*1.25 - oy);
+                arrow1.setStartY(ey + dy*1.25 + ox);
+                arrow2.setStartX(ex + dx*1.25 + oy);
+                arrow2.setStartY(ey + dy*1.25 - ox);
             }
 
             mainLine.setStrokeWidth(3);

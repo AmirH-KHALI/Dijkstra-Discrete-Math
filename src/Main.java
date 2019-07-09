@@ -170,7 +170,7 @@ public class Main extends Application {
 
             //root.getChildren().add(arrow);
 
-            arrow.setFill(Color.RED);
+            arrow.setFill(Color.rgb(238, 237, 73));
             printShape(itemNumber, arrow, edge.getFace());
             //itemNumber++;
             printShape(itemNumber, val, edge.getValFace());
@@ -189,7 +189,8 @@ public class Main extends Application {
         primaryStage.setTitle("Discrete Math final project - Discrete");
 
         root = new Pane();
-        root.setStyle("-fx-background-color:RGB(158,158,158)");
+        root.setStyle("-fx-background-color:RGB(238, 73, 74)");
+//        root.setStyle("-fx-background-color:RGB(158,158,158)");
 
         Scene scene = new Scene(root,1000, 700);
 
@@ -203,6 +204,8 @@ public class Main extends Application {
         ArrayList<Integer> dist = myDij.getDist();
 
         showDij(edgeWalk, dist);
+
+        primaryStage.setAlwaysOnTop(true);
 
         primaryStage.show();
 
