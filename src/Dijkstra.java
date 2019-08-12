@@ -43,11 +43,13 @@ public class Dijkstra {
             int u = -1;
             int du = Integer.MAX_VALUE;
             for (int i = 0; i < n; ++i) {
-                if (mark[i] == 0 && dist[i] <= du) {
+                if (mark[i] == 0 && dist[i] < du) {
                     u = i;
                     du = dist[i];
                 }
             }
+            if (u == -1)
+                break;
             mark[u] = 1;
             ans.add(u);
             for (int v = 0; v < n; ++v)
@@ -57,7 +59,7 @@ public class Dijkstra {
                         par[v] = u;
                     }
         }
-
+        ArrayList<Edges> ex = writeOutput(s);
         return writeOutput(s);
     }
 
@@ -70,8 +72,10 @@ public class Dijkstra {
 //        }
 
         for (int i : ans) {
-            if (i != s) {
+            if (par[i] != i) {
                 ansE.add(w[par[i]][i]);
+                System.out.println(12);
+                //System.out.println(w[par[i]][i].getFirstNode().getNumFace().getText() + " " + w[par[i]][i].getSecondNode().getNumFace().getText());
                 distArr.add(dist[i]);
             }
         }
